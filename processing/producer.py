@@ -1,4 +1,5 @@
 from processing.source import Source
+from time import sleep
 
 
 class Producer:
@@ -6,6 +7,9 @@ class Producer:
         self.source_shape = (rows, cols, channels)
         self.source = Source(self.source_shape)
 
-    def download_frame(self):
-        frame = self.source.get_data()
-        return frame
+    def download_frame(self, queue, count=20):
+        for i in range(count):
+            frame = self.source.get_data()
+            print(f"produced {i}")
+            sleep(0.05)
+            queue.put(frame)
