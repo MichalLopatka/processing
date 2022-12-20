@@ -15,7 +15,7 @@ def run():
     consumer = Consumer()
     A = Queue()
     B = Queue()
-    producer_thread = Thread(target=producer.download_frame, args=(A,))
+    producer_thread = Thread(target=producer.download_frames, args=(A,))
     producer_thread.start()
     consumer_thread = Thread(target=consumer.process, args=(A, B), daemon=True)
     consumer_thread.start()
