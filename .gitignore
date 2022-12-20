@@ -3,3 +3,5 @@
 __pycache__/
 processed/*
 logs/*
+test/data/*
+.pytest_cache/

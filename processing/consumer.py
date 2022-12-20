@@ -62,10 +62,18 @@ class Consumer:
         while True:
             try:
                 image = queueB.get()
-                cv2.imwrite(f"{directory}/{no}.png", image)
+                self.save_image(f"{directory}/{no}.png", image)
                 no += 1
             except Empty:
                 continue
             else:
                 log.info(f"saving item {no}")
                 queueB.task_done()
+
+    def save_image(self, path: str, image: np.ndarray):
+        """
+        Saves an image to with given filename
+        param path: directory with a filename
+        param image: image to save
+        """
+        cv2.imwrite(path, image)
